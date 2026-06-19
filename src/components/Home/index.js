@@ -1,4 +1,4 @@
-import Navbar from '../Navbar';
+import NavBar from '../NavBar';
 import Footer from '../Footer';
 import Overview from './Overview';
 import ServiceSummary from './ServiceSummary';
@@ -37,7 +37,7 @@ function Home(){
     }
 return(
     <div className="home-page">
-        <Navbar />
+        <NavBar />
         <main className="container home-main">
             {loading && <p className="muted">Loading dashboard…</p>}
             {error && (
