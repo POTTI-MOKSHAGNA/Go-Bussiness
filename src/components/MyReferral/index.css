@@ -1,0 +1,37 @@
+.share .field {
+    margin-bottom: 16px;
+}
+
+.share .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 6px;
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+}
+
+.row input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    color: #333333;
+}
+
+.row .btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
