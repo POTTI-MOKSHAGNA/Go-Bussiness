@@ -1,9 +1,9 @@
 import NavBar from '../NavBar';
 import Footer from '../Footer';
-import Overview from './Overview';
-import ServiceSummary from './ServiceSummary';
-import MyReferral from './MyReferral';
-import Referrals from './Referrals';
+import Overview from '../Overview';
+import ServiceSummary from '../ServiceSummary';
+import MyReferral from '../MyReferral';
+import Referrals from '../Referrals';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import './index.css';
