@@ -1,0 +1,38 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.home-main {
+    flex: 1;
+    padding: 24px 20px;
+}
+
+.home-title {
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.home-subtitle {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.error {
+    background-color: #fdecea;
+    color: #d93025;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 16px 0;
+}
+
+.muted {
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    padding: 20px;
+}
