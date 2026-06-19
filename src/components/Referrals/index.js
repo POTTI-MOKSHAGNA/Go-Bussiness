@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import './index.css';
 import Cookies from "js-cookie";
-import { FiSearch, FiChevronLeft, FiChevronRight, FiAlertCircle } from "react-icons/fi";
+import { FiSearch, FiAlertCircle } from "react-icons/fi";
 
 const BASE_URL = "https://v9fes04dwf.execute-api.eu-north-1.amazonaws.com/api/referrals";
 const ITEMS_PER_PAGE = 10;
@@ -198,7 +198,7 @@ function Referrals() {
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((p) => p - 1)}
             >
-              <FiChevronLeft /> Previous
+              Previous
             </button>
             {pageNumbers.map((num) => (
               <button
@@ -214,7 +214,7 @@ function Referrals() {
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage((p) => p + 1)}
             >
-              Next <FiChevronRight />
+              Next 
             </button>
           </div>
         </div>
