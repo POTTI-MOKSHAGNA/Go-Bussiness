@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Go Business — Referral Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A secure, client-side referral dashboard built with React. Users sign in with email and password, view referral metrics, browse a paginated table of referrals, and inspect individual referral details.
 
-## Available Scripts
+## Live Demo
 
-In the project directory, you can run:
+Preview: [https://go-bussiness.vercel.app](https://go-bussiness.vercel.app)
 
-### `npm start`
+Test credentials  
+- **Email:** `admin@example.com`  
+- **Password:** `admin123`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- React Router DOM
+- JavaScript (ES6+)
+- CSS3
+- Create React App
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+src/
+├── components/
+│   ├── Footer/
+│   ├── Home/
+│   ├── Login/
+│   ├── MyReferral/
+│   ├── NavBar/
+│   ├── NotFound/
+│   ├── Overview/
+│   ├── ProtectedRoute/
+│   ├── ReferralDetail/
+│   ├── Referrals/
+│   └── ServiceSummary/
+├── App.css
+├── App.js
+├── App.test.js
+├── index.css
+├── index.js
+├── logo.svg
+├── reportWebVitals.js
+└── setupTests.js
 
-### `npm run build`
+public/
+├── index.html
+├── favicon.ico
+└── other static assets
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+package.json
+package-lock.json
+README.md
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Authentication** — Email + password login against a secure API endpoint. JWT token stored in a non-HttpOnly cookie.
+- **Protected Routes** — Dashboard and referral detail pages redirect unauthenticated users to `/login`.
+- **Referral Overview** — High-level metrics and service summary panels.
+- **Share Referral** — Copy referral link and code to clipboard.
+- **Searchable, Sortable Table** — Search by name or service; sort by date (newest / oldest). API-driven filtering.
+- **Client-Side Pagination** — 10 rows per page with Previous / Next / numbered controls.
+- **Referral Detail View** — Deep-linkable page per referral with formatted date and profit.
+- **Accessible** — Semantic landmarks, `aria-label`s, `role="alert"` errors, and proper label-input pairing.
 
-### `npm run eject`
+## Environment
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+No local environment variables are required. The app talks to a fixed AWS API:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+https://v9fes04dwf.execute-api.eu-north-1.amazonaws.com
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerequisites
 
-## Learn More
+- [Node.js](https://nodejs.org/) 18+  
+- npm (or bun)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm install
+```
 
-### Code Splitting
+### Run locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm run dev
+```
 
-### Analyzing the Bundle Size
+The dev server starts at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Build
 
-### Making a Progressive Web App
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## API Endpoints
 
-### Advanced Configuration
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/signin` | Authenticate; returns JWT token |
+| `GET`  | `/api/referrals?sort=desc` | List all referrals (with metrics & summary) |
+| `GET`  | `/api/referrals?search=…` | Filtered list |
+| `GET`  | `/api/referrals?id=…` | Single referral detail |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+All referral endpoints require `Authorization: Bearer <token>`.
 
-### Deployment
+## Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| Path | Access | Page |
+|------|--------|------|
+| `/login` | Public | Login |
+| `/` | Protected | Dashboard |
+| `/referral/:id` | Protected | Referral Detail |
+| `/dashboard/referrals` | Public | Redirects to `/` |
+| `*` | Public | 404 Not Found |
 
-### `npm run build` fails to minify
+## Token Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. User submits credentials on `/login`.
+2. On success, `jwt_token` is set via `js-cookie` and the user is redirected to `/`.
+3. Authenticated requests include `Authorization: Bearer <jwt_token>`.
+4. Logout removes the cookie and returns the user to `/login`.
+
+## Accessibility Highlights
+
+- All form inputs have associated `<label htmlFor>` tags.
+- Error banners use `role="alert"`.
+- Navigation landmarks are labeled (`aria-label="Primary"`, `aria-label="Footer"`).
+- Table rows are keyboard-focusable and respond to `Enter` for navigation.
+
+## License
+
+This is a demo project created for educational purposes.
