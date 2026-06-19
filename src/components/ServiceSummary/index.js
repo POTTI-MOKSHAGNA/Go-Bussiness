@@ -1,3 +1,4 @@
+import './index.css';
 function ServiceSummary({ summary }) {
   const rows = [
     ["Service", summary.service],
