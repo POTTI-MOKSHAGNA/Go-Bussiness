@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import Cookies from 'js-cookie';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 function Login() {
@@ -8,7 +8,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [errorMsgShow, setErrorMsgShow] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const handleSubmit = async (e)  => {
         e.preventDefault();
         // Handle login logic here
@@ -24,9 +24,11 @@ function Login() {
         const data = await response.json();
         console.log(data);
         if(response.ok) {
-            const jwtToken = data.jwt_token;
+            console.log(data?.data);
+            const jwtToken = data?.data?.token;
+            console.log(jwtToken);
             Cookies.set('jwt_token', jwtToken, { expires: 7 }); // Store JWT token in cookies for 7 days
-            // navigate('/');
+            navigate('/');
         } else {
             setError(data.message);
             setErrorMsgShow(true);

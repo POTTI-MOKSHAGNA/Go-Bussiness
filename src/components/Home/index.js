@@ -30,9 +30,9 @@ function Home(){
         const data = await response.json();
         console.log(data);
         if(response.ok) {
-            setData(data);
+            setData(data?.data);
         } else {
-            setError(data.message);
+            setError(data?.data);
         }
         setLoading(false);
     }
@@ -45,8 +45,8 @@ return(
           </div>}
             {error && (
               <div role="alert" className="error">
-                {error.message}
-                {error.status ? ` (status ${error.status})` : ""}
+                <p>{error.message}</p>
+                {error.success ? ` (status ${error.success})` : ""}
               </div>
             )}
             {!error && !loading && (
