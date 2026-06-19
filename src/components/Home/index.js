@@ -7,7 +7,7 @@ import Referrals from './Referrals';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import './index.css';
-import Loader from 'react-loader-spinner'
+import {ThreeDots} from 'react-loader-spinner'
 
 function Home(){
     const [data, setData] = useState(null);
@@ -41,7 +41,7 @@ return(
         <NavBar />
         <main className="container home-main">
             {loading && <div className="loader-container" data-testid="loader">
-            <Loader type="ThreeDots" color="#ff0b37" height={50} width={50} />
+            <ThreeDots color="#ff0b37" height={50} width={50} />
           </div>}
             {error && (
               <div role="alert" className="error">
