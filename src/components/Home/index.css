@@ -5,6 +5,8 @@
 }
 
 .home-main {
+    max-width: 100%;
+    box-sizing: border-box;
     flex: 1;
     padding: 24px 20px;
 }

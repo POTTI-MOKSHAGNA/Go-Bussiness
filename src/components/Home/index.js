@@ -39,7 +39,7 @@ function Home(){
 return(
     <div className="home-page">
         <NavBar />
-        <main className="container home-main">
+        <main className="home-main">
             {loading && <div className="loader-container" data-testid="loader">
             <ThreeDots color="#ff0b37" height={50} width={50} />
           </div>}

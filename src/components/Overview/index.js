@@ -3,7 +3,6 @@ export default function Overview({ metrics }) {
   return (
     <section
       className="card"
-      role="region"
       aria-label="Overview metrics"
     >
       <h2 className="section-title">Overview</h2>
