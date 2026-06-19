@@ -53,10 +53,10 @@ return(
               <>
                 <h1 className="home-title">Referral Dashboard</h1>
                 <p className="home-subtitle">Track your referrals, earnings, and partner activity in one place.</p>
-                <Overview />
-                <ServiceSummary/>
-                <MyReferral />
-                <Referrals/>   
+                <Overview metrics={data.metrics} />
+                <ServiceSummary summary={data.serviceSummary} />
+                <MyReferral referral={data.referral} />
+                <Referrals referrals={data.referrals} />   
             </>)} 
         </main>
         <Footer />
