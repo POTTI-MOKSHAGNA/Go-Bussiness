@@ -7,10 +7,12 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [errorMsgShow, setErrorMsgShow] = useState(false);
     const navigate = useNavigate();
     const handleSubmit = async (e)  => {
         e.preventDefault();
+        setLoading(true);
         // Handle login logic here
         const url = "https://v9fes04dwf.execute-api.eu-north-1.amazonaws.com/api/auth/signin";
         const options = {
@@ -33,7 +35,7 @@ function Login() {
             setError(data.message);
             setErrorMsgShow(true);
         }
-
+        setLoading(false);
     };
 
     return (
@@ -51,7 +53,9 @@ function Login() {
                     <input className="login-input" id="Password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <br/>
                     {errorMsgShow && <p className="login-error">{error}</p>}
-                    <button className="login-button" type="submit">Sign in</button>
+                    <button className="login-button" type="submit" disabled={loading}>
+                        {loading ? "Signing in…" : "Sign in"}
+                    </button>
                 </form>
             </div>
         </div>
