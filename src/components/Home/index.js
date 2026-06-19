@@ -7,6 +7,7 @@ import Referrals from './Referrals';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import './index.css';
+import Loader from 'react-loader-spinner'
 
 function Home(){
     const [data, setData] = useState(null);
@@ -39,7 +40,9 @@ return(
     <div className="home-page">
         <NavBar />
         <main className="container home-main">
-            {loading && <p className="muted">Loading dashboard…</p>}
+            {loading && <div className="loader-container" data-testid="loader">
+            <Loader type="ThreeDots" color="#ff0b37" height={50} width={50} />
+          </div>}
             {error && (
               <div role="alert" className="error">
                 {error.message}
