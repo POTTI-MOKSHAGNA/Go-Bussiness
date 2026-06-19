@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
+import {ThreeDots} from 'react-loader-spinner'
 
 // ── Formatters ──────────────────────────────────────────
 function formatDateYYYYMMDD(iso) {
@@ -85,7 +86,9 @@ export default function ReferralDetail() {
       <main className="container main">
         <h1>Referral Details</h1>
 
-        {loading && <p className="muted">Loading…</p>}
+          {loading && <div className="loader-container" data-testid="loader">
+            <ThreeDots color="#ff0b37" height={50} width={50} />
+          </div>}
 
         {!loading && error && (
           <div role="alert" className="error">
