@@ -1,0 +1,43 @@
+.footer {
+    background-color: #fafafa;
+    border-top: 1px solid #e0e0e0;
+    padding: 16px 0;
+    margin-top: auto;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.brand-sm {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 16px;
+}
+
+.footer-nav a {
+    color: #555555;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+
+.muted {
+    font-size: 13px;
+    color: #999999;
+}
