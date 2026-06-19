@@ -4,6 +4,7 @@ import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
+import ReferralDetail from './components/ReferralDetail';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route exact path="/referral/:id" element={<ProtectedRoute><ReferralDetail /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
